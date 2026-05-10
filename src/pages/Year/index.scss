@@ -1,0 +1,121 @@
+
+.yearlyBillPage {
+  --ka-text-color: #191d26;
+  height: 100%;          
+  background: linear-gradient(180deg, #ffffff, #f5f5f5 100%);
+  background-color: rgba(245, 245, 245, 0.9);
+  color: var(--ka-text-color);
+
+  /* 头部 */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px 0;
+    background: #fff;
+
+    .title {
+        font-size: 18px;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .arrow-btn {
+        font-size: 18px;
+        color: #333;
+    }
+  }
+
+
+  .yearly-content {
+    height: calc(100vh - 100px); /* 关键：占满剩余高度 */
+    padding: 12px;
+    overflow-y: scroll; /* 内部滚动 */
+
+    /* 隐藏滚动条 */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .summary-card {
+        margin-bottom: 12px;
+        border-radius: 16px;
+
+
+        .summary-row {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .summary-item {
+            .label {
+                font-size: 14px;
+                color: #999;
+                margin-bottom: 6px;
+            }
+            .income {
+                font-size: 20px;
+                font-weight: bold;
+                color: #16a34a;
+            }
+            .pay {
+                font-size: 20px;
+                font-weight: bold;
+                color: #f43f5e;
+            }
+            .total {
+                font-size: 20px;
+                font-weight: bold;
+                color: #333;
+            }
+        }
+    }
+
+    .card {
+        margin-bottom: 12px;
+        border-radius: 16px;
+
+        .chart-placeholder {
+            height: 200px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            margin-bottom: 12px;
+        }
+    }
+
+    .cate-list {
+        border-radius: 16px;
+        padding: 12px;
+        .cate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            span:last-child {
+                color: #f43f5e;
+                font-weight: 500;
+            }
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }  
+  }
+}

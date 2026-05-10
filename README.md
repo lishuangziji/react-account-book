@@ -18,16 +18,12 @@
 - 工具库：Lodash、Vite
 
 ## 📂 项目结构
-src/
-├── components/     # 公共组件（图表、图标等）
-
-├── pages/          # 页面组件（年度账单等）
-
-├── store/          # Redux 状态管理
-
-├── constants/      # 常量配置
-
-└── App.jsx         # 入口文件
+src/           
+├── components/              # 公共组件（图表、图标等）     
+├── pages/                   # 页面组件（年度账单等）      
+├── store/                   # Redux 状态管理       
+├── constants/               # 常量配置        
+└── App.jsx                  # 入口文件
 
 ## 📦 项目启动
 ```bash

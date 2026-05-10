@@ -15,7 +15,8 @@
 - 数据可视化：Recharts
 - 日期处理：Day.js
 - 样式：SCSS
-- 工具库：Lodash、Vite
+- 工具库：Lodash
+- 构建工具：Vite
 
 ## 📂 项目结构
 src/           
@@ -33,3 +34,5 @@ npm install
 # 启动开发服务
 npm run dev
 
+# 打包构建
+npm run build

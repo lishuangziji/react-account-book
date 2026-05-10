@@ -86,8 +86,12 @@ const Month = () => {
 
     // 当前月按照日来分组
     const dayGroup = useMemo(()=>{
+        // 🔥 先过滤掉 0 元、无效数据
+        const validList = currentMonthList.filter(item => 
+            item.money !== 0 && item.type && item.useFor
+        )
         //return 计算之后的结果
-        const groupData = _.groupBy(currentMonthList,(item) => dayjs(item.date).format('YYYY-MM-DD'))
+        const groupData = _.groupBy(validList,(item) => dayjs(item.date).format('YYYY-MM-DD'))
         const keys = Object.keys(groupData).sort((a,b) => dayjs(b) - dayjs(a))
         return {
             groupData,

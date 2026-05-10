@@ -5,6 +5,15 @@ import { billTypeToName } from "@/contants";
 import Icon from "@/components/icon";
 
 const DailyBill = ({date, billList}) => {
+    // 🔥 过滤：只保留 金额≠0 且 有类型 的数据
+    const filteredList = useMemo(() => {
+        return billList?.filter(item => 
+            item.money !== 0 &&          // 金额不是0
+            item.type &&                // 有收入/支出类型
+            item.useFor                 // 有消费类型
+        ) || []
+    }, [billList])
+
     const dayResult = useMemo(()=>{
         // 如果当前没有账单 返回0
         if (!billList || billList.length===0){
@@ -55,7 +64,7 @@ const DailyBill = ({date, billList}) => {
             {/* 单日列表 */}
             <div className="billList" style={{display:visible?"block":"none"}}>
                 {
-                    billList.map((item) => {
+                    filteredList.map((item) => {
                         return (
                             <div className="bill" key={item.id}>
                                 {/* 图标 */}

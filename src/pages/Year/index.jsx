@@ -75,7 +75,7 @@ const Year = () => {
         if(!payList.length) return []
         // 按useFor分组
         const groupData = _.groupBy(payList,'useFor')
-        // 计算每个分类总金额
+        // 计算每个分类总金额,并过滤掉 0 元的
         return Object.keys(groupData).map(key => {
             const totalMoney = groupData[key].reduce((sum,item) => sum+Math.abs(item.money) ,0)
             return {
@@ -83,7 +83,7 @@ const Year = () => {
                 name: billTypeToName[key] || key,
                 money: totalMoney
             }
-        })
+        }).filter(item => item.money > 0) //  过滤掉金额为 0 的分类
      },[currentYearList])
 
     // 点击左右箭头切换年份
@@ -154,7 +154,7 @@ const Year = () => {
                                         </div>
                                     ))
                                 ) : (
-                                    <div style={{ textAlign: 'center', padding: '20px 0', color: '#999' }}>暂无支出分类数据</div>
+                                    <div>暂无支出分类数据</div>
                                 )}
                             </div>
                         </Card>

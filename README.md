@@ -1,16 +1,25 @@
-# React + Vite
+# 📊 个人记账管理系统
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 基于 React 开发的移动端个人记账应用，支持收支记录、年度数据统计与可视化展示。
 
-Currently, two official plugins are available:
+## ✨ 功能亮点
+- 💰 日常收支记录与分类管理
+- 📈 年度账单统计：总收入/总支出/总结余
+- 📊 月度收支趋势折线图 + 支出分类占比饼图
+- 📱 移动端响应式布局，适配手机端使用
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ 技术栈
+- 框架：React 19 + Redux Toolkit
+- UI 组件库：Ant Design Mobile
+- 数据可视化：Recharts
+- 日期处理：Day.js
+- 样式：SCSS
+- 工具库：Lodash
 
-## React Compiler
+## 📦 项目启动
+```bash
+# 安装依赖
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# 启动开发服务
+npm run dev

@@ -23,6 +23,24 @@ const billStore = createSlice({
 //解构actionCreater函数
 const {setBillList, addBill} = billStore.actions
 
+const STORAGE_KEY = 'bill_list_data'
+
+// 读取本地缓存，无数据返回mock
+const getLocalData = () => {
+  const local = localStorage.getItem(STORAGE_KEY)
+  if(local){
+    return JSON.parse(local)
+  }
+  // 初始化存入mock
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(MOCK_DATA))
+  return MOCK_DATA
+}
+
+// 保存到本地
+const saveLocalData = (list) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+}
+
 //编写异步
 const getBillList = () => {
     return async (dispatch) => {
@@ -34,11 +52,13 @@ const getBillList = () => {
                 dispatch(setBillList(res.data))
             } catch (error) {
                 // 没开server也兜底用mock
-                dispatch(setBillList(MOCK_DATA))
+                const list = getLocalData()
+                dispatch(setBillList(list))
             }
         }else{
             // 线上预览：直接加载mock静态数据
-            dispatch(setBillList(MOCK_DATA))
+            const list = getLocalData()
+            dispatch(setBillList(list))
         }  
     }
 }
@@ -48,12 +68,30 @@ const addBillList = (data) => {
     return async (dispatch) => {
         // 只有本地开发允许新增请求
         if(import.meta.env.DEV){
-            // 编写异步请求
-            const res = await axios.post('http://localhost:8888/ka',data)
-            // 触发同步reducer
-            dispatch(addBill(res.data))
+            try {
+                // 开发环境先走后端接口
+                const res = await axios.post('http://localhost:8888/ka',data)
+                dispatch(addBill(res.data))
+                // 更新本地缓存
+                const nowList = getLocalData()
+                nowList.push(res.data)
+                saveLocalData(nowList)
+            } catch (err) {
+                // 后端没开，走本地存储新增
+                const nowList = getLocalData()
+                const newItem = { id: Date.now(), ...data }
+                nowList.push(newItem)
+                saveLocalData(nowList)
+                dispatch(addBill(newItem))
+            }
+        }else{
+            // 线上环境：只用localStorage新增
+            const nowList = getLocalData()
+            const newItem = { id: Date.now(), ...data }
+            nowList.push(newItem)
+            saveLocalData(nowList)
+            dispatch(addBill(newItem))
         }
-        // 线上直接禁用新增逻辑，只做预览
     }
 }
 

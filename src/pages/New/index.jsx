@@ -1,6 +1,7 @@
 import Icon from "@/components/icon"
 import { billListData } from "@/contants"
-import { Button, DatePicker, Input, NavBar, Toast } from "antd-mobile"
+import { Button, DatePicker, Input, NavBar} from "antd-mobile"
+import { message } from "antd"  
 import classNames from "classnames"
 import { useNavigate } from "react-router-dom"
 import './index.scss'
@@ -42,11 +43,7 @@ const New = () => {
         }
         dispatch(addBillList(data))
 
-        Toast.show({
-            icon: 'success',
-            content: '记账成功！',
-            duration: 1000
-        })
+        message.success('记账成功！')
         // 保存后 重置表单 不退出页面
         setMoney('')
         setUseFor('')
